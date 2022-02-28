@@ -1,0 +1,25 @@
+
+p{ text-align: right;}
+div{
+    background-color: mediumaquamarine; width: 100px; height: 100px;
+    display: inline-block; text-align: center; margin: 100px; border: 100px;
+   
+    
+}
+.box1{ animation: roller1 5s infinite; }
+@keyframes roller1 {
+    0%{transform: rotate(0deg);}
+    100%{transform: rotate(360deg);}
+    }
+
+.box2{ animation: roller2 5s infinite;}
+@keyframes roller2 {
+    0%{transform: rotate(0deg);}
+    100%{transform: rotate(360deg);}
+     }
+
+.box3{ animation: roller3 5s infinite; }
+        @keyframes roller3 {
+        0%{transform: rotate(0deg);}
+        100%{transform: rotate(360deg);}
+    }
