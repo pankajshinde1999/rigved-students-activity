@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Input Box</title>
+</head>
+<style>
+    input{
+        padding:5px; border-radius: 4px;
+    }
+    label{
+        font-weight: bold;
+    }
+
+</style>
+
+<body>
+    <script>
+        function myfuna() {
+            var a = parseInt(document.getElementById('number1').value);
+            var b = parseInt(document.getElementById('number2').value);
+            document.getElementById('result').innerHTML = (a + b);
+        }
+        function myfuns() {
+            var a = parseInt(document.getElementById('number1').value);
+            var b = parseInt(document.getElementById('number2').value);
+            document.getElementById('result').innerHTML = (a - b);
+        }
+        function myfunm() {
+            var a = parseInt(document.getElementById('number1').value);
+            var b = parseInt(document.getElementById('number2').value);
+            document.getElementById('result').innerHTML = (a * b);
+        }
+        function myfund() {
+            var a = parseInt(document.getElementById('number1').value);
+            var b = parseInt(document.getElementById('number2').value);
+            document.getElementById('result').innerHTML = (a / b);
+        }
+    </script>
+    <h4>Input Box</h4>
+    <label>Enter 1st Number:</label> 
+    <input type="number" value="" id="number1"><br><br>
+    <label>Enter 2nd Number:</label> 
+    <input type="number" value="" id="number2"><br><br>
+    <label> Addition of two numbers:</label> 
+    <input type="submit" value="ADD" onclick="return myfuna()"><br><br>
+    <label> Subtraction of two numbers:</label> 
+    <input type="submit" value="SUB" onclick="return myfuns()"><br><br>
+    <label> Multiplication of two numbers:</label> 
+    <input type="submit" value="MUL" onclick="return myfunm()"><br><br>
+    <label> dividation of two numbers:</label> 
+    <input type="submit" value="DIV" onclick="return myfund()"><br><br>
+
+    <b>This is the result:</b>
+    <span id="result"></span>
+
+
+</body>
+
+</html>
