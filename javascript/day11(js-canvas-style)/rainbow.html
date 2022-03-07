@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rainbow</title>
+    <style>
+    body {background-color: lightblue;}
+        h2{background-color: black; text-align: center; color: white;}
+    </style>
+</head>
+
+<body>
+    <h2>Rainbow using canvas</h2>>
+    <canvas id="myCanvas" width="400" height="400">
+    </canvas>
+    <script type="text/javascript">
+        var colors = ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet'];
+
+        var arcWidth = 25;
+        var radius = 20 * arcWidth;
+
+        var rainbow = document.getElementById("myCanvas");
+        var context = rainbow.getContext("2d");
+        rainbow.width = (radius + (colors.length - 0.5) * arcWidth) * 2;
+        rainbow.height = (radius + (colors.length - 1) * arcWidth);
+
+        var drawArc = function (color) {
+            context.beginPath();
+            context.arc(
+                rainbow.width / 2,
+                rainbow.height + arcWidth / 2,
+                radius,
+                Math.PI,
+                2 * Math.PI
+            );
+            context.lineWidth = arcWidth;
+            context.strokeStyle = color;
+            context.stroke();
+            context.closePath();
+            radius += arcWidth;
+        };
+
+        colors.forEach(drawArc);
+
+    </script>
+</body>
+
+</html>
