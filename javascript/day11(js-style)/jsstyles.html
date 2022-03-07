@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jsstyles</title>
+    <style>
+        p {font-size: 70px;}
+        h1 {text-align: center;}
+        body{background-color: khaki;}
+    </style>
+</head>
+
+<body>
+    <h1>javascript styles</h1>
+    <p id="a">Some Content to change the Font Size </p>
+    <input type="button" value="Increase Font Size " onclick="increaseFontSize()">
+    <input type="button" value="decrease Font Size " onclick="decreaseFontSize()">
+    <button onclick = 'changeColor()'>Add color</button>
+
+
+
+    <script type = 'text/javascript'>
+        var counter = 0;
+            function changeColor() {
+                var ele = document.getElementById('a');
+                var colors = ['red', 'darkgreen', 'blue', 'darkbrown'];
+                ele.style.color = colors[counter++];
+                if(counter == colors.length) {
+                    counter = 0;
+                }
+            }
+        function increaseFontSize() {
+            var ifont = document.getElementById('a').style.fontSize = "130px";
+            fontSize++;
+        }
+
+        function decreaseFontSize() {
+            var dfont = document.getElementById('a').style.fontSize = "20px";
+            fontSize--;
+        }
+    </script>
+</body>
+
+</html>
