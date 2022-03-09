@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee form</title>
+    <style>
+        body{
+            text-align: center;
+            border: 2px solid;
+            background-color: antiquewhite;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Employee form</h2>
+    <form action="#" autocomplete="off" onclick=" return validation()">
+
+        <input type="text" id="name" placeholder="Name"><br><br>
+        <span id="name1"></span>
+
+        <input type="text" id="age" placeholder="Age"><br><br>
+        <span id="age1"></span>
+        <input type="submit" id="btn">
+
+    </form>
+
+    <script>
+        function validation() {
+            var user = document.getElementById('name').value;
+
+            if (user == "") {
+                document.getElementById('name1').innerHTML = "Enter the Name";
+                return false;
+            }
+            if (user.length < 2) {
+                document.getElementById('name1').innerHTML = "Nmore than 2 char";
+                return false;
+            }
+
+            if (!isNaN(user)) {
+                document.getElementById('name1').innerHTML = "should be an alphabet";
+                return false;
+            }
+            else {
+                document.getElementById('name1').innerHTML = "";
+            }
+            var age = document.getElementById('age').value;
+
+            if (age == "") {
+                document.getElementById('age1').innerHTML = "Enter your age";
+                return false;
+            }
+            if (age <= 18 || age >= 60) {
+                document.getElementById('age1').innerHTML = "Age Between 18 - 60";
+                return false;
+            }
+            else {
+                alert("All Good");
+            }
+        }
+    </script>
+</body>
+
+</html>
