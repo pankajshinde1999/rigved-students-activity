@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rest and Spread Operators</title>
+</head>
+
+<body>
+    <h2>Rest and Spread Operators</h2>
+    <script type="text/javascript">
+        function test(a, ...b) {
+
+            document.write('a = ' + a + '<br>');
+            document.write('b = ' + b + '<br>');
+            document.write('<hr>');
+
+            document.write('<p>max value=' + Math.max(a, ...b) + '</p>');
+            document.write('<p>min value=' + Math.min(a, ...b) + '</p>');
+            document.write('sum : ');
+    
+            var sum = 0;
+            for (var i in arguments) {
+                sum += arguments[i];
+            }
+            document.write('Sum is :' + sum + '<br>');
+        }
+        test(10, 20, 30, 5, 15);
+
+    </script>
+
+</body>
+
+</html>
