@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>random number pad</title>
+</head>
+
+<body>
+    <h2>random number pad</h2>
+    <script type="text/javascript">
+        let x = Math.floor((Math.random() * 1000000));
+        document.write(`<p>number generated : ${x}</p>`);
+        let x1 = String(x)
+        let r1 = x1.padStart(6, "0")
+        document.write(`<p>after pad : ${r1}</p>`);
+        
+    </script>
+</body>
+
+</html>

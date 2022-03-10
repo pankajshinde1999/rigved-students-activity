@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 10 Activity!</title>
+
+</head>
+
+<body>
+    
+        <table id="table">
+
+            <thead>
+                <tr>
+                    <th>Player-Id</th>
+                    <th>Full-Name</th>
+                    <th>State </th>
+                    <th>City </th>
+                </tr>
+            </thead>
+            <tbody id="tabledata"></tbody>
+        </table>
+        <script type="text/javascript">
+            var player = [
+                {
+                    customerId: 1122, firstname: 'Sachin', lastname: 'Tendulkar',
+                    address: { state: 'Maharashta', city: 'Mumbai' }
+                },
+                {
+                    customerId: 1233, firstname: 'Rahul', lastname: 'Dravid',
+                    address: { state: 'Karnataka', city: 'Bangalore' }
+                },
+
+                {
+                    customerId: 1344, firstname: 'Rohit', lastname: 'Sharma',
+                    address: { state: 'Maharashta', city: 'Pune' }
+                },
+                {
+                    customerId: 1455, firstname: 'Jasprit', lastname: 'Bumrah',
+                    address: { state: 'Gujarat', city: 'Surat' }
+                },
+                {
+                    customerId: 1566, firstname: 'Jayant', lastname: 'Yadav',
+                    address: { state: 'Uttar Pradesh', city: 'Bihar' }
+                },
+            ];
+            var table = "<tbody>";
+            for (i = 0; i < player.length; i++) {
+                table += "<tr>";
+                table += "<td>" + player[i].customerId + "</td>";
+                table += "<td>" + player[i].firstname + '&nbsp' + player[i].lastname + "</td>";
+                table += "<td>" + player[i].address.state + "</td>";
+                table += "<td>" + player[i].address.city + "</td>";
+                table += "</tr>";
+            }
+            table += "</tbody>";
+            document.getElementById("tabledata").innerHTML = table;
+        </script>
+    
+    </h2>
+</body>
+
+</html>
