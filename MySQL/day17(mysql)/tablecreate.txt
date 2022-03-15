@@ -1,0 +1,211 @@
+Enter password: ****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 9
+Server version: 8.0.28 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2022, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show tables;
+ERROR 1046 (3D000): No database selected
+mysql> use rigved_db
+Database changed
+mysql> show tables;
++---------------------+
+| Tables_in_rigved_db |
++---------------------+
+| emp                 |
+| emp1                |
++---------------------+
+2 rows in set (0.00 sec)
+
+mysql> insert into emp values(11, 'alex');
+Query OK, 1 row affected (0.02 sec)
+
+mysql> insert into emp values(12, 'bruce');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> alter table emp add column age int;
+Query OK, 0 rows affected (0.03 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> slect * from emp
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'slect * from emp' at line 1
+mysql> show tables;
++---------------------+
+| Tables_in_rigved_db |
++---------------------+
+| emp                 |
+| emp1                |
++---------------------+
+2 rows in set (0.01 sec)
+
+mysql> select * from emp;
++------+-------+------+
+| sno  | fname | age  |
++------+-------+------+
+|   11 | alex  | NULL |
+|   12 | bruce | NULL |
++------+-------+------+
+2 rows in set (0.00 sec)
+
+mysql> create table employee(emp_id primary key,emp_name not null ,Age int,
+    -> show emp;Age int,
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'primary key,emp_name not null ,Age int,
+show emp' at line 1
+    ->     CHECK (Age>=18);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Age int,
+    CHECK (Age>=18)' at line 1
+mysql> create table employee(emp_id primary key,emp_name not null ,age int);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'primary key,emp_name not null ,age int)' at line 1
+mysql> create table employee(id primary key,name not null ,age int);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'primary key,name not null ,age int)' at line 1
+mysql> CREATE TABLE EMPLOYEE(ID INT , NAME VARCHAR(20));
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> ALTER TABLE EMPLOYEE
+    -> ADD PRIMARY KEY (ID);
+Query OK, 0 rows affected (0.08 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> ALTER TABLE EMPLOYEE
+    -> ADD COLUMN AGE INT;
+Query OK, 0 rows affected (0.03 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> ALTER TABLE EMPLOYEE
+    -> ADD CHECK (18<=AGE=>60);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '=>60)' at line 2
+mysql> ALTER TABLE EMPLOYEE
+    -> ADD CHECK (AGE BETWEEN 18 AND 60)
+    -> ;
+Query OK, 0 rows affected (0.05 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+
+mysql> INSERT INTO EMPLOYEE VALUES(13, 'RAJ' ,33)
+    -> ;
+Query OK, 1 row affected (0.01 sec)
+
+
+mysql> select * from employee;
++----+------+------+
+| ID | NAME | AGE  |
++----+------+------+
+| 13 | RAJ  |   33 |
++----+------+------+
+1 row in set (0.00 sec)
+
+mysql> INSERT INTO EMPLOYEE VALUES(11, 'yash' ,70)
+    -> ;
+ERROR 3819 (HY000): Check constraint 'employee_chk_1' is violated.
+mysql> INSERT INTO EMPLOYEE VALUES(11, 'yash' ,50);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from employee;
++----+------+------+
+| ID | NAME | AGE  |
++----+------+------+
+| 11 | yash |   50 |
+| 13 | RAJ  |   33 |
++----+------+------+
+2 rows in set (0.00 sec)
+
+mysql> ALTER TABLE EMPLOYEE
+    -> ADD COLUMN EMAIL VARCHAR;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 2
+mysql> ALTER TABLE EMPLOYEE
+    -> ADD COLUMN EMAIL VARCHAR(20);
+Query OK, 0 rows affected (0.03 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> INSERT INTO EMPLOYEE VALUES(21, 'sam' , 45 ,sam@gmail.com);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '@gmail.com)' at line 1
+mysql> select * from employee;
++----+------+------+-------+
+| ID | NAME | AGE  | EMAIL |
++----+------+------+-------+
+| 11 | yash |   50 | NULL  |
+| 13 | RAJ  |   33 | NULL  |
++----+------+------+-------+
+2 rows in set (0.00 sec)
+
+mysql>  INSERT INTO EMPLOYEE VALUES(21, 'sam' , 45 ,'sam@gmail.com');
+Query OK, 1 row affected (0.01 sec)
+
+mysql>  INSERT INTO EMPLOYEE VALUES(21, 'sim' , 55 ,'sim@gmail.com');
+ERROR 1062 (23000): Duplicate entry '21' for key 'employee.PRIMARY'
+mysql>  INSERT INTO EMPLOYEE VALUES(24, 'sim' , 55 ,'sim@gmail.com');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from employee;
++----+------+------+---------------+
+| ID | NAME | AGE  | EMAIL         |
++----+------+------+---------------+
+| 11 | yash |   50 | NULL          |
+| 13 | RAJ  |   33 | NULL          |
+| 21 | sam  |   45 | sam@gmail.com |
+| 24 | sim  |   55 | sim@gmail.com |
++----+------+------+---------------+
+4 rows in set (0.00 sec)
+
+mysql> ALTER TABLE EMPLOYEE
+    -> ADD COLUMN( AADHAR INT(15),PAN INT(15));
+Query OK, 0 rows affected, 2 warnings (0.03 sec)
+Records: 0  Duplicates: 0  Warnings: 2
+
+mysql>  INSERT INTO EMPLOYEE VALUES(12, 'pan' , 45 ,'pan@gmail.com',2345432,4546323);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from employee;
++----+------+------+---------------+---------+---------+
+| ID | NAME | AGE  | EMAIL         | AADHAR  | PAN     |
++----+------+------+---------------+---------+---------+
+| 11 | yash |   50 | NULL          |    NULL |    NULL |
+| 12 | pan  |   45 | pan@gmail.com | 2345432 | 4546323 |
+| 13 | RAJ  |   33 | NULL          |    NULL |    NULL |
+| 21 | sam  |   45 | sam@gmail.com |    NULL |    NULL |
+| 24 | sim  |   55 | sim@gmail.com |    NULL |    NULL |
++----+------+------+---------------+---------+---------+
+5 rows in set (0.00 sec)
+
+mysql> ALTER TABLE EMPLOYEE
+    -> UNIQUE (pan);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'UNIQUE (pan)' at line 2
+mysql> ALTER TABLE EMPLOYEE
+    -> ADD CONSTRAINT UC_employe unique(aadhar,pan);
+Query OK, 0 rows affected (0.04 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql>  INSERT INTO EMPLOYEE VALUES(42, 'jay' , 32 ,'jay@gmail.com',2345432,4546323);
+ERROR 1062 (23000): Duplicate entry '2345432-4546323' for key 'employee.UC_employe'
+mysql> ALTER TABLE EMPLOYEE
+    -> drop column pan;
+Query OK, 0 rows affected (0.07 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from employee;
++----+------+------+---------------+---------+
+| ID | NAME | AGE  | EMAIL         | AADHAR  |
++----+------+------+---------------+---------+
+| 11 | yash |   50 | NULL          |    NULL |
+| 12 | pan  |   45 | pan@gmail.com | 2345432 |
+| 13 | RAJ  |   33 | NULL          |    NULL |
+| 21 | sam  |   45 | sam@gmail.com |    NULL |
+| 24 | sim  |   55 | sim@gmail.com |    NULL |
++----+------+------+---------------+---------+
+5 rows in set (0.00 sec)
+
+mysql> drop table employee
+    -> ;
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> select * from employee;
+ERROR 1146 (42S02): Table 'rigved_db.employee' doesn't exist
+mysql>
