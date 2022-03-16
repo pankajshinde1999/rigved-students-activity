@@ -1,0 +1,78 @@
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| rigved_db          |
+| sys                |
++--------------------+
+5 rows in set (0.01 sec)
+
+mysql> use rigved_db;
+Database changed
+mysql> create table students_reg(rollno int primary key, name varchar(15), age int(2));
+Query OK, 0 rows affected, 1 warning (0.03 sec)
+
+mysql> insert into students_reg values(1,'raj', 20);
+Query OK, 1 row affected (0.02 sec)
+
+mysql> insert into students_reg values(2,'ramesh', 20);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into students_reg values(3,'ravi', 21);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into students_reg values(4,'suraj', 22);
+Query OK, 1 row affected (0.00 sec)
+
+mysql>
+mysql> create table students_marks(m_id int (2), physics int (2), maths int (2), chemistry int (2),rollno int (2), foreign key(rollno) references students_reg(rollno));
+Query OK, 0 rows affected, 4 warnings (0.05 sec)
+
+mysql> insert into students_marks values(11, 70, 90, 70, 2);
+Query OK, 1 row affected (0.02 sec)
+
+mysql>
+mysql> insert into students_marks values(22, 80, 80, 80, 1);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into students_marks values(33, 90, 90, 70, 3);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into students_marks values(44, 88, 88, 77, 4);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from students_reg;
++--------+--------+------+
+| rollno | name   | age  |
++--------+--------+------+
+|      1 | raj    |   20 |
+|      2 | ramesh |   20 |
+|      3 | ravi   |   21 |
+|      4 | suraj  |   22 |
++--------+--------+------+
+4 rows in set (0.05 sec)
+
+mysql> select * from students_marks;
++------+---------+-------+-----------+--------+
+| m_id | physics | maths | chemistry | rollno |
++------+---------+-------+-----------+--------+
+|   11 |      70 |    90 |        70 |      2 |
+|   22 |      80 |    80 |        80 |      1 |
+|   33 |      90 |    90 |        70 |      3 |
+|   44 |      88 |    88 |        77 |      4 |
++------+---------+-------+-----------+--------+
+4 rows in set (0.00 sec)
+
+mysql>  select students_reg.rollno, students_reg.name, students_marks.physics, students_marks.maths, students_marks.chemistry,(Physics+Maths+Chemistry) total, round((Physics+Maths+Chemistry)/3,2) average from students_reg inner join students_marks on students_reg.rollno=students_marks.rollno;
++--------+--------+---------+-------+-----------+-------+---------+
+| rollno | name   | physics | maths | chemistry | total | average |
++--------+--------+---------+-------+-----------+-------+---------+
+|      1 | raj    |      80 |    80 |        80 |   240 |   80.00 |
+|      2 | ramesh |      70 |    90 |        70 |   230 |   76.67 |
+|      3 | ravi   |      90 |    90 |        70 |   250 |   83.33 |
+|      4 | suraj  |      88 |    88 |        77 |   253 |   84.33 |
++--------+--------+---------+-------+-----------+-------+---------+
+4 rows in set (0.00 sec)
