@@ -1,0 +1,162 @@
+shellHelper.show@src/mongo/shell/utils.js:1211:11
+shellHelper@src/mongo/shell/utils.js:838:15
+@(shellhelp2):1:1
+> show collections;
+> db.createCollection("myCollection");
+{ "ok" : 1 }
+> show collections;
+myCollection
+> db.createCollection.insert({_id:12,name:"alex"});
+uncaught exception: TypeError: db.createCollection.insert is not a function :
+@(shell):1:1
+> db.myCollection.insert({_id:12,name:"alex"});
+WriteResult({ "nInserted" : 1 })
+> db.myCollection.insert({name:"bruce"});
+WriteResult({ "nInserted" : 1 })
+> db.myCollection.insert({firstname:"bruce",lastname:"john"});
+WriteResult({ "nInserted" : 1 })
+> db.myCollection.find();
+{ "_id" : 12, "name" : "alex" }
+{ "_id" : ObjectId("62384efb7e6c17b87f7f031f"), "name" : "bruce" }
+{ "_id" : ObjectId("62384f207e6c17b87f7f0320"), "firstname" : "bruce", "lastname" : "john" }
+> db.myCollection.insertOne({_id:13,name:sachin});
+uncaught exception: ReferenceError: sachin is not defined :
+@(shell):1:35
+> db.myCollection.insertOne({_id:13,name:"sachin"});
+{ "acknowledged" : true, "insertedId" : 13 }
+> db.myCollection.insertOne({name:"vijay"});
+{
+        "acknowledged" : true,
+        "insertedId" : ObjectId("62384f867e6c17b87f7f0321")
+}
+> db.myCollection.find();
+{ "_id" : 12, "name" : "alex" }
+{ "_id" : ObjectId("62384efb7e6c17b87f7f031f"), "name" : "bruce" }
+{ "_id" : ObjectId("62384f207e6c17b87f7f0320"), "firstname" : "bruce", "lastname" : "john" }
+{ "_id" : 13, "name" : "sachin" }
+{ "_id" : ObjectId("62384f867e6c17b87f7f0321"), "name" : "vijay" }
+> db.myCollection.insertMany([
+... {_id:33 ,name:"rajesh"};
+... {_id:44,name:"sourav"},
+... {firstname:"ajay",lastname:"ganugle"}
+... ]};
+uncaught exception: SyntaxError: missing ] after element list :
+@(shell):2:23
+> db.myCollection.insertMany([ {_id:33 ,name:"rajesh"}, {_id:44,name:"sourav"}, {firstname:"ajay",lastname:"ganugle"} ]};
+uncaught exception: SyntaxError: missing ) after argument list :
+@(shell):1:117
+> db.myCollection.insertMany([ {_id:33 ,name:"rajesh"}, {_id:44,name:"sourav"}, {firstname:"ajay",lastname:"ganugle"} ]);
+{
+        "acknowledged" : true,
+        "insertedIds" : [
+                33,
+                44,
+                ObjectId("623850857e6c17b87f7f0322")
+        ]
+}
+> db.myCollection.find();
+{ "_id" : 12, "name" : "alex" }
+{ "_id" : ObjectId("62384efb7e6c17b87f7f031f"), "name" : "bruce" }
+{ "_id" : ObjectId("62384f207e6c17b87f7f0320"), "firstname" : "bruce", "lastname" : "john" }
+{ "_id" : 13, "name" : "sachin" }
+{ "_id" : ObjectId("62384f867e6c17b87f7f0321"), "name" : "vijay" }
+{ "_id" : 33, "name" : "rajesh" }
+{ "_id" : 44, "name" : "sourav" }
+{ "_id" : ObjectId("623850857e6c17b87f7f0322"), "firstname" : "ajay", "lastname" : "ganugle" }
+> db.createCollection("employee");
+{ "ok" : 1 }
+> db.createCollection("EMPLOYEE");
+{ "ok" : 1 }
+> show collections;
+EMPLOYEE
+employee
+myCollection
+> db.employee.insert({id:1,name:"alex"});
+WriteResult({ "nInserted" : 1 })
+> db.employee.insertOne({id:2,name:"bruce",password:"bru123"});
+{
+        "acknowledged" : true,
+        "insertedId" : ObjectId("623853287e6c17b87f7f0324")
+}
+> db.employee.insert({_id:1,name:"alex"});
+WriteResult({ "nInserted" : 1 })
+> db.employee.insertOne({_id:2,name:"bruce",password:"bru123"});
+{ "acknowledged" : true, "insertedId" : 2 }
+> db.employee.find();
+{ "_id" : ObjectId("623852e47e6c17b87f7f0323"), "id" : 1, "name" : "alex" }
+{ "_id" : ObjectId("623853287e6c17b87f7f0324"), "id" : 2, "name" : "bruce", "password" : "bru123" }
+{ "_id" : 1, "name" : "alex" }
+{ "_id" : 2, "name" : "bruce", "password" : "bru123" }
+> db.EMPLOYEE.insertMany([
+... {_id:22,name:"rajesh",password:"raj123"},
+... {_id:23,name:"ajay",password:"ajay456"},
+... {_id:24,name:"sourav",password:"sau789"}
+... ]);
+{ "acknowledged" : true, "insertedIds" : [ 22, 23, 24 ] }
+> db.createCollection("user");
+{ "ok" : 1 }
+> db.user.insertMany([ {_id:22,name:"rajesh",password:"raj123"}, {_id:23,name:"ajay",password:"ajay456"}, {_id:24,name:"sourav",password:"sau789"} ]);
+{ "acknowledged" : true, "insertedIds" : [ 22, 23, 24 ] }
+> db.user.find();
+{ "_id" : 22, "name" : "rajesh", "password" : "raj123" }
+{ "_id" : 23, "name" : "ajay", "password" : "ajay456" }
+{ "_id" : 24, "name" : "sourav", "password" : "sau789" }
+> db.user.find({_id:23});
+{ "_id" : 23, "name" : "ajay", "password" : "ajay456" }
+> db.user.remove({_id:24});
+WriteResult({ "nRemoved" : 1 })
+> db.user.find();
+{ "_id" : 22, "name" : "rajesh", "password" : "raj123" }
+{ "_id" : 23, "name" : "ajay", "password" : "ajay456" }
+> db.user.remove({});
+WriteResult({ "nRemoved" : 2 })
+> db.user.find();
+> db.employee.find();
+{ "_id" : ObjectId("623852e47e6c17b87f7f0323"), "id" : 1, "name" : "alex" }
+{ "_id" : ObjectId("623853287e6c17b87f7f0324"), "id" : 2, "name" : "bruce", "password" : "bru123" }
+{ "_id" : 1, "name" : "alex" }
+{ "_id" : 2, "name" : "bruce", "password" : "bru123" }
+> db.employee.update({"_id":2},{"password":"bruce789"});
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.employee.find();
+{ "_id" : ObjectId("623852e47e6c17b87f7f0323"), "id" : 1, "name" : "alex" }
+{ "_id" : ObjectId("623853287e6c17b87f7f0324"), "id" : 2, "name" : "bruce", "password" : "bru123" }
+{ "_id" : 1, "name" : "alex" }
+{ "_id" : 2, "password" : "bruce789" }
+> db.employee.insert({_id:3,name:"raj",password:"raj456"});
+WriteResult({ "nInserted" : 1 })
+> db.employee.find();
+{ "_id" : ObjectId("623852e47e6c17b87f7f0323"), "id" : 1, "name" : "alex" }
+{ "_id" : ObjectId("623853287e6c17b87f7f0324"), "id" : 2, "name" : "bruce", "password" : "bru123" }
+{ "_id" : 1, "name" : "alex" }
+{ "_id" : 2, "password" : "bruce789" }
+{ "_id" : 3, "name" : "raj", "password" : "raj456" }
+> db.user.remove({name:"alex"});
+WriteResult({ "nRemoved" : 0 })
+> db.user.find();
+> db.employee.find();
+{ "_id" : ObjectId("623852e47e6c17b87f7f0323"), "id" : 1, "name" : "alex" }
+{ "_id" : ObjectId("623853287e6c17b87f7f0324"), "id" : 2, "name" : "bruce", "password" : "bru123" }
+{ "_id" : 1, "name" : "alex" }
+{ "_id" : 2, "password" : "bruce789" }
+{ "_id" : 3, "name" : "raj", "password" : "raj456" }
+> db.user.remove({"name":"alex"});
+WriteResult({ "nRemoved" : 0 })
+> db.user.remove({"id":"1"});
+WriteResult({ "nRemoved" : 0 })
+> db.employee.find();
+{ "_id" : ObjectId("623852e47e6c17b87f7f0323"), "id" : 1, "name" : "alex" }
+{ "_id" : ObjectId("623853287e6c17b87f7f0324"), "id" : 2, "name" : "bruce", "password" : "bru123" }
+{ "_id" : 1, "name" : "alex" }
+{ "_id" : 2, "password" : "bruce789" }
+{ "_id" : 3, "name" : "raj", "password" : "raj456" }
+> db.employee.remove({});
+WriteResult({ "nRemoved" : 5 })
+> db.employee.insertMany([ {_id:2,name:"raj",password:"raj123"}, {_id:3,name:"yash",password:"yash456"}]);
+{ "acknowledged" : true, "insertedIds" : [ 2, 3 ] }
+> db.employee.update({"_id": 3}, {$set: {name: "yash",password:"ya234"}});
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.employee.find();
+{ "_id" : 2, "name" : "raj", "password" : "raj123" }
+{ "_id" : 3, "name" : "yash", "password" : "ya234" }
+>

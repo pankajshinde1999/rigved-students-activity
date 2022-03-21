@@ -1,0 +1,110 @@
+Enter password: ****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 12
+Server version: 8.0.28 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2022, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| rigved_db          |
+| sys                |
++--------------------+
+5 rows in set (0.02 sec)
+
+mysql> use rigved_db;
+Database changed
+mysql> shows tables;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'shows tables' at line 1
+mysql> show tables;
++---------------------+
+| Tables_in_rigved_db |
++---------------------+
+| dept                |
+| employee            |
+| marks               |
+| person              |
+| student             |
+| user                |
+| user_history        |
++---------------------+
+7 rows in set (0.01 sec)
+
+mysql> select *from person;
++----+-------+--------+
+| id | name  | gender |
++----+-------+--------+
+| 11 | raj   | male   |
+| 12 | yash  | male   |
+| 13 | alia  | female |
+| 14 | pooja | female |
++----+-------+--------+
+4 rows in set (0.00 sec)
+
+mysql> delimiter $$
+mysql> create procedure p(IN i int)
+    -> begin
+    -> declare n varchar(15);
+    -> declare g varchar(6);
+    -> select name, gender into n, g from person where id = i;
+    -> if g = 'male' then
+    -> select concat('Mr.', n);
+    -> else select concat('Ms.', n);
+    -> end if;
+    -> end
+    -> $$
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> call p(11)$$
++------------------+
+| concat('Mr.', n) |
++------------------+
+| Mr.raj           |
++------------------+
+1 row in set (0.01 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> call p(12)$$
++------------------+
+| concat('Mr.', n) |
++------------------+
+| Mr.yash          |
++------------------+
+1 row in set (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> call p(13)$$
++------------------+
+| concat('Ms.', n) |
++------------------+
+| Ms.alia          |
++------------------+
+1 row in set (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> select * from person$$
++----+-------+--------+
+| id | name  | gender |
++----+-------+--------+
+| 11 | raj   | male   |
+| 12 | yash  | male   |
+| 13 | alia  | female |
+| 14 | pooja | female |
++----+-------+--------+
+4 rows in set (0.00 sec)
+
+mysql>
