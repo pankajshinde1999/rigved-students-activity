@@ -1,0 +1,53 @@
+> show collections;
+EMPLOYEE
+employee
+myCollection
+studentID
+user
+> db.createCollection("counters")
+{ "ok" : 1 }
+>  db.counters.insert({
+... "_id":"productid",
+... "sequence_value": 0
+... })
+WriteResult({ "nInserted" : 1 })
+> function getNextSequenceValue(sequenceName){
+... var sequenceDocument = db.counters.findAndModify({
+... query:{_id: sequenceName },
+... update: {$inc:{sequence_value:1}},
+... new:true
+... });
+... return sequenceDocument.sequence_value;
+... };
+> db.products.insert({
+... "_id":getNextSequenceValue("productid"),
+... "student_name":"raj",
+... "year":2
+... })
+WriteResult({ "nInserted" : 1 })
+> db.products.insert({
+... "_id":getNextSequenceValue("productid"),
+... "student_name":"yash",
+... "year":4
+... })
+WriteResult({ "nInserted" : 1 })
+> db.products.find()
+{ "_id" : 1, "student_name" : "raj", "year" : 2 }
+{ "_id" : 2, "student_name" : "yash", "year" : 4 }
+> db.products.insert({
+... "_id":getNextSequenceValue("productid"),
+... "student_name":"rakesh",
+... "year":3
+... })
+WriteResult({ "nInserted" : 1 })
+> db.products.insert({
+... "_id":getNextSequenceValue("productid"),
+... "student_name":"pankaj",
+... "year":4
+... })
+WriteResult({ "nInserted" : 1 })
+> db.products.find()
+{ "_id" : 1, "student_name" : "raj", "year" : 2 }
+{ "_id" : 2, "student_name" : "yash", "year" : 4 }
+{ "_id" : 3, "student_name" : "rakesh", "year" : 3 }
+{ "_id" : 4, "student_name" : "pankaj", "year" : 4 }

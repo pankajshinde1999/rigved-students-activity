@@ -1,0 +1,450 @@
+> show dbs;
+admin   0.000GB
+config  0.000GB
+local   0.000GB
+mydb    0.000GB
+> use mydb;
+switched to db mydb
+> show collections;
+EMPLOYEE
+employee
+myCollection
+user
+> db.user.find();
+ 
+insert data --------------------------------------------------------------------------
+> db.user.insertMany([
+... { "_id" : 10, "name" : "Alex", "age" : 35 },
+... { "_id" : 20, "name" : "Bruce", "age" : 35 },
+... { "_id" : 30, "name" : "Sachin", "age" : 36 },
+... { "_id" : 40, "name" : "Vijay", "age" : 36 },
+... { "_id" : 50, "name" : "Rahul", "age" : 36 },
+... { "_id" : 60, "name" : "Rahul", "age" : 38 },
+... { "_id" : 70, "name" : "Mohan", "age" : 38 },
+... { "_id" : 80, "name" : "Balu", "age" : 38 },
+... { "_id" : 65, "name" : "Ajay", "age" : 48 },
+... { "_id" : 75, "name" : "David", "age" : 28 },
+... { "_id" : 34, "name" : "Charles", "age" : 18 }
+... ]);
+{
+        "acknowledged" : true,
+        "insertedIds" : [
+                10,
+                20,
+                30,
+                40,
+                50,
+                60,
+                70,
+                80,
+                65,
+                75,
+                34
+        ]
+}
+
+update------------------------------------------------------------------------
+> db.user.updateOne({age38},{$set:{name:"edward"}});
+uncaught exception: ReferenceError: age38 is not defined :
+@(shell):1:20
+> db.user.updateOne({age:38},{$set:{name:"edward"}});
+{ "acknowledged" : true, "matchedCount" : 1, "modifiedCount" : 1 }
+> db.user.find();
+{ "_id" : 10, "name" : "Alex", "age" : 35 }
+{ "_id" : 20, "name" : "Bruce", "age" : 35 }
+{ "_id" : 30, "name" : "Sachin", "age" : 36 }
+{ "_id" : 40, "name" : "Vijay", "age" : 36 }
+{ "_id" : 50, "name" : "Rahul", "age" : 36 }
+{ "_id" : 60, "name" : "edward", "age" : 38 }
+{ "_id" : 70, "name" : "Mohan", "age" : 38 }
+{ "_id" : 80, "name" : "Balu", "age" : 38 }
+{ "_id" : 65, "name" : "Ajay", "age" : 48 }
+{ "_id" : 75, "name" : "David", "age" : 28 }
+{ "_id" : 34, "name" : "Charles", "age" : 18 }
+> db.user.updateMany({age:38},{$set:{name:"edward"}});
+{ "acknowledged" : true, "matchedCount" : 3, "modifiedCount" : 2 }
+> db.user.find();
+{ "_id" : 10, "name" : "Alex", "age" : 35 }
+{ "_id" : 20, "name" : "Bruce", "age" : 35 }
+{ "_id" : 30, "name" : "Sachin", "age" : 36 }
+{ "_id" : 40, "name" : "Vijay", "age" : 36 }
+{ "_id" : 50, "name" : "Rahul", "age" : 36 }
+{ "_id" : 60, "name" : "edward", "age" : 38 }
+{ "_id" : 70, "name" : "edward", "age" : 38 }
+{ "_id" : 80, "name" : "edward", "age" : 38 }
+{ "_id" : 65, "name" : "Ajay", "age" : 48 }
+{ "_id" : 75, "name" : "David", "age" : 28 }
+{ "_id" : 34, "name" : "Charles", "age" : 18 }
+insert ---------------------------------------------------------------------------------
+> db.user.insertdb.user.insertMany([
+... { "_id" : 90, "name" : "george", "age" : 45,"gender":"male","address":"bangalore","phone":34567},
+... { "_id" : 85, "name" : "max", "age" : 45,"gender":"male","address":"chennai","phone":98976},
+... ]);
+{ "acknowledged" : true, "insertedIds" : [ 90, 85 ] }
+> db.user.find();
+{ "_id" : 10, "name" : "Alex", "age" : 35 }
+{ "_id" : 20, "name" : "Bruce", "age" : 35 }
+{ "_id" : 30, "name" : "Sachin", "age" : 36 }
+{ "_id" : 40, "name" : "Vijay", "age" : 36 }
+{ "_id" : 50, "name" : "Rahul", "age" : 36 }
+{ "_id" : 60, "name" : "edward", "age" : 38 }
+{ "_id" : 70, "name" : "edward", "age" : 38 }
+{ "_id" : 80, "name" : "edward", "age" : 38 }
+{ "_id" : 65, "name" : "Ajay", "age" : 48 }
+{ "_id" : 75, "name" : "David", "age" : 28 }
+{ "_id" : 34, "name" : "Charles", "age" : 18 }
+> db.user.insertMany([ { "_id" : 90, "name" : "george", "age" : 45,"gender":"male","address":"bangalore","phone":34567}, { "_id" : 85, "name" : "max", "age" : 45,"gender":"male","address":"chennai","phone":98976}, ]);
+{ "acknowledged" : true, "insertedIds" : [ 90, 85 ] }
+> db.user.find();
+{ "_id" : 10, "name" : "Alex", "age" : 35 }
+{ "_id" : 20, "name" : "Bruce", "age" : 35 }
+{ "_id" : 30, "name" : "Sachin", "age" : 36 }
+{ "_id" : 40, "name" : "Vijay", "age" : 36 }
+{ "_id" : 50, "name" : "Rahul", "age" : 36 }
+{ "_id" : 60, "name" : "edward", "age" : 38 }
+{ "_id" : 70, "name" : "edward", "age" : 38 }
+{ "_id" : 80, "name" : "edward", "age" : 38 }
+{ "_id" : 65, "name" : "Ajay", "age" : 48 }
+{ "_id" : 75, "name" : "David", "age" : 28 }
+{ "_id" : 34, "name" : "Charles", "age" : 18 }
+{ "_id" : 90, "name" : "george", "age" : 45, "gender" : "male", "address" : "bangalore", "phone" : 34567 }
+{ "_id" : 85, "name" : "max", "age" : 45, "gender" : "male", "address" : "chennai", "phone" : 98976 }
+pretty----------------------------------------------------------------------------------------------------
+> db.user.find();.pretty();
+uncaught exception: SyntaxError: expected expression, got '.' :
+@(shell):1:15
+> db.user.find().pretty();
+{ "_id" : 10, "name" : "Alex", "age" : 35 }
+{ "_id" : 20, "name" : "Bruce", "age" : 35 }
+{ "_id" : 30, "name" : "Sachin", "age" : 36 }
+{ "_id" : 40, "name" : "Vijay", "age" : 36 }
+{ "_id" : 50, "name" : "Rahul", "age" : 36 }
+{ "_id" : 60, "name" : "edward", "age" : 38 }
+{ "_id" : 70, "name" : "edward", "age" : 38 }
+{ "_id" : 80, "name" : "edward", "age" : 38 }
+{ "_id" : 65, "name" : "Ajay", "age" : 48 }
+{ "_id" : 75, "name" : "David", "age" : 28 }
+{ "_id" : 34, "name" : "Charles", "age" : 18 }
+{
+        "_id" : 90,
+        "name" : "george",
+        "age" : 45,
+        "gender" : "male",
+        "address" : "bangalore",
+        "phone" : 34567
+}
+{
+        "_id" : 85,
+        "name" : "max",
+        "age" : 45,
+        "gender" : "male",
+        "address" : "chennai",
+        "phone" : 98976
+}
+storing inbuilt js objects -----------------------------------------------
+> db.user.find({age:38});
+{ "_id" : 60, "name" : "edward", "age" : 38 }
+{ "_id" : 70, "name" : "edward", "age" : 38 }
+{ "_id" : 80, "name" : "edward", "age" : 38 }
+> db.user.find({},{name:1});
+{ "_id" : 10, "name" : "Alex" }
+{ "_id" : 20, "name" : "Bruce" }
+{ "_id" : 30, "name" : "Sachin" }
+{ "_id" : 40, "name" : "Vijay" }
+{ "_id" : 50, "name" : "Rahul" }
+{ "_id" : 60, "name" : "edward" }
+{ "_id" : 70, "name" : "edward" }
+{ "_id" : 80, "name" : "edward" }
+{ "_id" : 65, "name" : "Ajay" }
+{ "_id" : 75, "name" : "David" }
+{ "_id" : 34, "name" : "Charles" }
+{ "_id" : 90, "name" : "george" }
+{ "_id" : 85, "name" : "max" }
+> db.user.find({},{name:1,_id:0});
+{ "name" : "Alex" }
+{ "name" : "Bruce" }
+{ "name" : "Sachin" }
+{ "name" : "Vijay" }
+{ "name" : "Rahul" }
+{ "name" : "edward" }
+{ "name" : "edward" }
+{ "name" : "edward" }
+{ "name" : "Ajay" }
+{ "name" : "David" }
+{ "name" : "Charles" }
+{ "name" : "george" }
+{ "name" : "max" }
+> db.user.find({},{_id:0});
+{ "name" : "Alex", "age" : 35 }
+{ "name" : "Bruce", "age" : 35 }
+{ "name" : "Sachin", "age" : 36 }
+{ "name" : "Vijay", "age" : 36 }
+{ "name" : "Rahul", "age" : 36 }
+{ "name" : "edward", "age" : 38 }
+{ "name" : "edward", "age" : 38 }
+{ "name" : "edward", "age" : 38 }
+{ "name" : "Ajay", "age" : 48 }
+{ "name" : "David", "age" : 28 }
+{ "name" : "Charles", "age" : 18 }
+{ "name" : "george", "age" : 45, "gender" : "male", "address" : "bangalore", "phone" : 34567 }
+{ "name" : "max", "age" : 45, "gender" : "male", "address" : "chennai", "phone" : 98976 }
+> var x =10;
+> var y=20;
+> varz =x+y;
+30
+> z:
+... ;
+> z;
+uncaught exception: ReferenceError: z is not defined :
+@(shell):1:1
+> var z =x+y;
+> z:
+...
+... ;
+> z
+30
+> function demo(){
+... return'hello world';
+... }
+> var x =demo();
+> x;
+hello world
+> var counter =1;
+> function demo(){
+... counter=counter+1;
+... return counter;
+... }
+> x = demo();
+2
+> x = demo();
+3
+> function demo(){ counter=counter+1; return counter; }
+> x = demo();
+4
+> new Date();
+ISODate("2022-03-22T10:09:02.853Z")
+> new Date().toLocaleDateString();
+Tuesday, March 22, 2022
+> db.user.insertOne({ "_id" : 1, "firstname" : "sachin", "lastname" : "tendulkar", hobbies : ["cricket","football"]});
+{ "acknowledged" : true, "insertedId" : 1 }
+> db.user.insertOne({ "_id" : 2, "firstname" : "virat", "lastname" : "kholi", hobbies : ["cricket","hockey"],adress:{"state":"MH","city":"MBI"}});
+{ "acknowledged" : true, "insertedId" : 2 }
+> db.user.insertOne({ "_id" : 3, "firstname" : "anil", "lastname" : "kumble", hobbies : ["cricket","chess"],adress:{"state":"KA","city":"BLR"}});
+{ "acknowledged" : true, "insertedId" : 3 }
+> db.user.insertOne({ "_id" : 4, "firstname" : "rohit", "lastname" : "sharma", hobbies : ["cricket",""],adress:{"state":"MH","city":"MBI"}});
+{ "acknowledged" : true, "insertedId" : 4 }
+> db.user.find();
+{ "_id" : 10, "name" : "Alex", "age" : 35 }
+{ "_id" : 20, "name" : "Bruce", "age" : 35 }
+{ "_id" : 30, "name" : "Sachin", "age" : 36 }
+{ "_id" : 40, "name" : "Vijay", "age" : 36 }
+{ "_id" : 50, "name" : "Rahul", "age" : 36 }
+{ "_id" : 60, "name" : "edward", "age" : 38 }
+{ "_id" : 70, "name" : "edward", "age" : 38 }
+{ "_id" : 80, "name" : "edward", "age" : 38 }
+{ "_id" : 65, "name" : "Ajay", "age" : 48 }
+{ "_id" : 75, "name" : "David", "age" : 28 }
+{ "_id" : 34, "name" : "Charles", "age" : 18 }
+{ "_id" : 90, "name" : "george", "age" : 45, "gender" : "male", "address" : "bangalore", "phone" : 34567 }
+{ "_id" : 85, "name" : "max", "age" : 45, "gender" : "male", "address" : "chennai", "phone" : 98976 }
+{ "_id" : 1, "firstname" : "sachin", "lastname" : "tendulkar", "hobbies" : [ "cricket", "football" ] }
+{ "_id" : 2, "firstname" : "virat", "lastname" : "kholi", "hobbies" : [ "cricket", "hockey" ], "adress" : { "state" : "MH", "city" : "MBI" } }
+{ "_id" : 3, "firstname" : "anil", "lastname" : "kumble", "hobbies" : [ "cricket", "chess" ], "adress" : { "state" : "KA", "city" : "BLR" } }
+{ "_id" : 4, "firstname" : "rohit", "lastname" : "sharma", "hobbies" : [ "cricket", "" ], "adress" : { "state" : "MH", "city" : "MBI" } }
+> db.user.find({"adress.state": "MH"});
+{ "_id" : 2, "firstname" : "virat", "lastname" : "kholi", "hobbies" : [ "cricket", "hockey" ], "adress" : { "state" : "MH", "city" : "MBI" } }
+{ "_id" : 4, "firstname" : "rohit", "lastname" : "sharma", "hobbies" : [ "cricket", "" ], "adress" : { "state" : "MH", "city" : "MBI" } }
+> db.user.insertOne({ "_id" : 5, "firstname" : "vikram", "dob": new Date(1998,10,25), hobbies : ["cricket",""]});
+{ "acknowledged" : true, "insertedId" : 5 }
+> db.user.find();
+{ "_id" : 10, "name" : "Alex", "age" : 35 }
+{ "_id" : 20, "name" : "Bruce", "age" : 35 }
+{ "_id" : 30, "name" : "Sachin", "age" : 36 }
+{ "_id" : 40, "name" : "Vijay", "age" : 36 }
+{ "_id" : 50, "name" : "Rahul", "age" : 36 }
+{ "_id" : 60, "name" : "edward", "age" : 38 }
+{ "_id" : 70, "name" : "edward", "age" : 38 }
+{ "_id" : 80, "name" : "edward", "age" : 38 }
+{ "_id" : 65, "name" : "Ajay", "age" : 48 }
+{ "_id" : 75, "name" : "David", "age" : 28 }
+{ "_id" : 34, "name" : "Charles", "age" : 18 }
+{ "_id" : 90, "name" : "george", "age" : 45, "gender" : "male", "address" : "bangalore", "phone" : 34567 }
+{ "_id" : 85, "name" : "max", "age" : 45, "gender" : "male", "address" : "chennai", "phone" : 98976 }
+{ "_id" : 1, "firstname" : "sachin", "lastname" : "tendulkar", "hobbies" : [ "cricket", "football" ] }
+{ "_id" : 2, "firstname" : "virat", "lastname" : "kholi", "hobbies" : [ "cricket", "hockey" ], "adress" : { "state" : "MH", "city" : "MBI" } }
+{ "_id" : 3, "firstname" : "anil", "lastname" : "kumble", "hobbies" : [ "cricket", "chess" ], "adress" : { "state" : "KA", "city" : "BLR" } }
+{ "_id" : 4, "firstname" : "rohit", "lastname" : "sharma", "hobbies" : [ "cricket", "" ], "adress" : { "state" : "MH", "city" : "MBI" } }
+{ "_id" : 5, "firstname" : "vikram", "dob" : ISODate("1998-11-24T18:30:00Z"), "hobbies" : [ "cricket", "" ] }
+> db.user.insertOne({ "_id" : 6, "firstname" : "raj", "dob": new Date(1998,10,25).toLocaleDateString(), hobbies : ["cricket"]});
+{ "acknowledged" : true, "insertedId" : 6 }
+> db.user.find();
+{ "_id" : 10, "name" : "Alex", "age" : 35 }
+{ "_id" : 20, "name" : "Bruce", "age" : 35 }
+{ "_id" : 30, "name" : "Sachin", "age" : 36 }
+{ "_id" : 40, "name" : "Vijay", "age" : 36 }
+{ "_id" : 50, "name" : "Rahul", "age" : 36 }
+{ "_id" : 60, "name" : "edward", "age" : 38 }
+{ "_id" : 70, "name" : "edward", "age" : 38 }
+{ "_id" : 80, "name" : "edward", "age" : 38 }
+{ "_id" : 65, "name" : "Ajay", "age" : 48 }
+{ "_id" : 75, "name" : "David", "age" : 28 }
+{ "_id" : 34, "name" : "Charles", "age" : 18 }
+{ "_id" : 90, "name" : "george", "age" : 45, "gender" : "male", "address" : "bangalore", "phone" : 34567 }
+{ "_id" : 85, "name" : "max", "age" : 45, "gender" : "male", "address" : "chennai", "phone" : 98976 }
+{ "_id" : 1, "firstname" : "sachin", "lastname" : "tendulkar", "hobbies" : [ "cricket", "football" ] }
+{ "_id" : 2, "firstname" : "virat", "lastname" : "kholi", "hobbies" : [ "cricket", "hockey" ], "adress" : { "state" : "MH", "city" : "MBI" } }
+{ "_id" : 3, "firstname" : "anil", "lastname" : "kumble", "hobbies" : [ "cricket", "chess" ], "adress" : { "state" : "KA", "city" : "BLR" } }
+{ "_id" : 4, "firstname" : "rohit", "lastname" : "sharma", "hobbies" : [ "cricket", "" ], "adress" : { "state" : "MH", "city" : "MBI" } }
+{ "_id" : 5, "firstname" : "vikram", "dob" : ISODate("1998-11-24T18:30:00Z"), "hobbies" : [ "cricket", "" ] }
+{ "_id" : 6, "firstname" : "raj", "dob" : "Wednesday, November 25, 1998", "hobbies" : [ "cricket" ] }
+> db.user.find().sort({name:1});
+{ "_id" : 1, "firstname" : "sachin", "lastname" : "tendulkar", "hobbies" : [ "cricket", "football" ] }
+{ "_id" : 2, "firstname" : "virat", "lastname" : "kholi", "hobbies" : [ "cricket", "hockey" ], "adress" : { "state" : "MH", "city" : "MBI" } }
+{ "_id" : 3, "firstname" : "anil", "lastname" : "kumble", "hobbies" : [ "cricket", "chess" ], "adress" : { "state" : "KA", "city" : "BLR" } }
+{ "_id" : 4, "firstname" : "rohit", "lastname" : "sharma", "hobbies" : [ "cricket", "" ], "adress" : { "state" : "MH", "city" : "MBI" } }
+{ "_id" : 5, "firstname" : "vikram", "dob" : ISODate("1998-11-24T18:30:00Z"), "hobbies" : [ "cricket", "" ] }
+{ "_id" : 6, "firstname" : "raj", "dob" : "Wednesday, November 25, 1998", "hobbies" : [ "cricket" ] }
+{ "_id" : 65, "name" : "Ajay", "age" : 48 }
+{ "_id" : 10, "name" : "Alex", "age" : 35 }
+{ "_id" : 20, "name" : "Bruce", "age" : 35 }
+{ "_id" : 34, "name" : "Charles", "age" : 18 }
+{ "_id" : 75, "name" : "David", "age" : 28 }
+{ "_id" : 50, "name" : "Rahul", "age" : 36 }
+{ "_id" : 30, "name" : "Sachin", "age" : 36 }
+{ "_id" : 40, "name" : "Vijay", "age" : 36 }
+{ "_id" : 60, "name" : "edward", "age" : 38 }
+{ "_id" : 70, "name" : "edward", "age" : 38 }
+{ "_id" : 80, "name" : "edward", "age" : 38 }
+{ "_id" : 90, "name" : "george", "age" : 45, "gender" : "male", "address" : "bangalore", "phone" : 34567 }
+{ "_id" : 85, "name" : "max", "age" : 45, "gender" : "male", "address" : "chennai", "phone" : 98976 }
+storing ----------------------------------------------------------------------------------------------------------------
+> db.user.find().sort({name:-1});
+{ "_id" : 85, "name" : "max", "age" : 45, "gender" : "male", "address" : "chennai", "phone" : 98976 }
+{ "_id" : 90, "name" : "george", "age" : 45, "gender" : "male", "address" : "bangalore", "phone" : 34567 }
+{ "_id" : 60, "name" : "edward", "age" : 38 }
+{ "_id" : 70, "name" : "edward", "age" : 38 }
+{ "_id" : 80, "name" : "edward", "age" : 38 }
+{ "_id" : 40, "name" : "Vijay", "age" : 36 }
+{ "_id" : 30, "name" : "Sachin", "age" : 36 }
+{ "_id" : 50, "name" : "Rahul", "age" : 36 }
+{ "_id" : 75, "name" : "David", "age" : 28 }
+{ "_id" : 34, "name" : "Charles", "age" : 18 }
+{ "_id" : 20, "name" : "Bruce", "age" : 35 }
+{ "_id" : 10, "name" : "Alex", "age" : 35 }
+{ "_id" : 65, "name" : "Ajay", "age" : 48 }
+{ "_id" : 1, "firstname" : "sachin", "lastname" : "tendulkar", "hobbies" : [ "cricket", "football" ] }
+{ "_id" : 2, "firstname" : "virat", "lastname" : "kholi", "hobbies" : [ "cricket", "hockey" ], "adress" : { "state" : "MH", "city" : "MBI" } }
+{ "_id" : 3, "firstname" : "anil", "lastname" : "kumble", "hobbies" : [ "cricket", "chess" ], "adress" : { "state" : "KA", "city" : "BLR" } }
+{ "_id" : 4, "firstname" : "rohit", "lastname" : "sharma", "hobbies" : [ "cricket", "" ], "adress" : { "state" : "MH", "city" : "MBI" } }
+{ "_id" : 5, "firstname" : "vikram", "dob" : ISODate("1998-11-24T18:30:00Z"), "hobbies" : [ "cricket", "" ] }
+{ "_id" : 6, "firstname" : "raj", "dob" : "Wednesday, November 25, 1998", "hobbies" : [ "cricket" ] }
+> db.user.find().limit(5);
+{ "_id" : 10, "name" : "Alex", "age" : 35 }
+{ "_id" : 20, "name" : "Bruce", "age" : 35 }
+{ "_id" : 30, "name" : "Sachin", "age" : 36 }
+{ "_id" : 40, "name" : "Vijay", "age" : 36 }
+{ "_id" : 50, "name" : "Rahul", "age" : 36 }
+> db.user.find().sort({name:-1}).limit(5);
+{ "_id" : 85, "name" : "max", "age" : 45, "gender" : "male", "address" : "chennai", "phone" : 98976 }
+{ "_id" : 90, "name" : "george", "age" : 45, "gender" : "male", "address" : "bangalore", "phone" : 34567 }
+{ "_id" : 80, "name" : "edward", "age" : 38 }
+{ "_id" : 60, "name" : "edward", "age" : 38 }
+{ "_id" : 70, "name" : "edward", "age" : 38 }
+Query operators ------------------------------------------------------------------------------------------------
+> db.user.find({$or:[{age:{$gt:38}},{"name":"charles"}]});
+{ "_id" : 65, "name" : "Ajay", "age" : 48 }
+{ "_id" : 90, "name" : "george", "age" : 45, "gender" : "male", "address" : "bangalore", "phone" : 34567 }
+{ "_id" : 85, "name" : "max", "age" : 45, "gender" : "male", "address" : "chennai", "phone" : 98976 }
+> db.user.find({age:{$in:[36,37,38]}});
+{ "_id" : 30, "name" : "Sachin", "age" : 36 }
+{ "_id" : 40, "name" : "Vijay", "age" : 36 }
+{ "_id" : 50, "name" : "Rahul", "age" : 36 }
+{ "_id" : 60, "name" : "edward", "age" : 38 }
+{ "_id" : 70, "name" : "edward", "age" : 38 }
+{ "_id" : 80, "name" : "edward", "age" : 38 }
+
+> db.user.find({age:{$lt:40}});
+{ "_id" : 10, "name" : "Alex", "age" : 35 }
+{ "_id" : 20, "name" : "Bruce", "age" : 35 }
+{ "_id" : 30, "name" : "Sachin", "age" : 36 }
+{ "_id" : 40, "name" : "Vijay", "age" : 36 }
+{ "_id" : 50, "name" : "Rahul", "age" : 36 }
+{ "_id" : 60, "name" : "edward", "age" : 38 }
+{ "_id" : 70, "name" : "edward", "age" : 38 }
+{ "_id" : 80, "name" : "edward", "age" : 38 }
+{ "_id" : 75, "name" : "David", "age" : 28 }
+{ "_id" : 34, "name" : "Charles", "age" : 18 }
+> db.user.find({age:{$lte:50}});
+{ "_id" : 10, "name" : "Alex", "age" : 35 }
+{ "_id" : 20, "name" : "Bruce", "age" : 35 }
+{ "_id" : 30, "name" : "Sachin", "age" : 36 }
+{ "_id" : 40, "name" : "Vijay", "age" : 36 }
+{ "_id" : 50, "name" : "Rahul", "age" : 36 }
+{ "_id" : 60, "name" : "edward", "age" : 38 }
+{ "_id" : 70, "name" : "edward", "age" : 38 }
+{ "_id" : 80, "name" : "edward", "age" : 38 }
+{ "_id" : 65, "name" : "Ajay", "age" : 48 }
+{ "_id" : 75, "name" : "David", "age" : 28 }
+{ "_id" : 34, "name" : "Charles", "age" : 18 }
+{ "_id" : 90, "name" : "george", "age" : 45, "gender" : "male", "address" : "bangalore", "phone" : 34567 }
+{ "_id" : 85, "name" : "max", "age" : 45, "gender" : "male", "address" : "chennai", "phone" : 98976 }
+> db.user.find({age:{$gte:50}});
+> db.user.find({age:{$gte:10}});
+{ "_id" : 10, "name" : "Alex", "age" : 35 }
+{ "_id" : 20, "name" : "Bruce", "age" : 35 }
+{ "_id" : 30, "name" : "Sachin", "age" : 36 }
+{ "_id" : 40, "name" : "Vijay", "age" : 36 }
+{ "_id" : 50, "name" : "Rahul", "age" : 36 }
+{ "_id" : 60, "name" : "edward", "age" : 38 }
+{ "_id" : 70, "name" : "edward", "age" : 38 }
+{ "_id" : 80, "name" : "edward", "age" : 38 }
+{ "_id" : 65, "name" : "Ajay", "age" : 48 }
+{ "_id" : 75, "name" : "David", "age" : 28 }
+{ "_id" : 34, "name" : "Charles", "age" : 18 }
+{ "_id" : 90, "name" : "george", "age" : 45, "gender" : "male", "address" : "bangalore", "phone" : 34567 }
+{ "_id" : 85, "name" : "max", "age" : 45, "gender" : "male", "address" : "chennai", "phone" : 98976 }
+> db.user.find({age:{$in:[36,37,38]}});
+{ "_id" : 30, "name" : "Sachin", "age" : 36 }
+{ "_id" : 40, "name" : "Vijay", "age" : 36 }
+{ "_id" : 50, "name" : "Rahul", "age" : 36 }
+{ "_id" : 60, "name" : "edward", "age" : 38 }
+{ "_id" : 70, "name" : "edward", "age" : 38 }
+{ "_id" : 80, "name" : "edward", "age" : 38 }
+> db.user.find({age:{$not:{$gt:36}}});
+{ "_id" : 10, "name" : "Alex", "age" : 35 }
+{ "_id" : 20, "name" : "Bruce", "age" : 35 }
+{ "_id" : 30, "name" : "Sachin", "age" : 36 }
+{ "_id" : 40, "name" : "Vijay", "age" : 36 }
+{ "_id" : 50, "name" : "Rahul", "age" : 36 }
+{ "_id" : 75, "name" : "David", "age" : 28 }
+{ "_id" : 34, "name" : "Charles", "age" : 18 }
+{ "_id" : 1, "firstname" : "sachin", "lastname" : "tendulkar", "hobbies" : [ "cricket", "football" ] }
+{ "_id" : 2, "firstname" : "virat", "lastname" : "kholi", "hobbies" : [ "cricket", "hockey" ], "adress" : { "state" : "MH", "city" : "MBI" } }
+{ "_id" : 3, "firstname" : "anil", "lastname" : "kumble", "hobbies" : [ "cricket", "chess" ], "adress" : { "state" : "KA", "city" : "BLR" } }
+{ "_id" : 4, "firstname" : "rohit", "lastname" : "sharma", "hobbies" : [ "cricket", "" ], "adress" : { "state" : "MH", "city" : "MBI" } }
+{ "_id" : 5, "firstname" : "vikram", "dob" : ISODate("1998-11-24T18:30:00Z"), "hobbies" : [ "cricket", "" ] }
+{ "_id" : 6, "firstname" : "raj", "dob" : "Wednesday, November 25, 1998", "hobbies" : [ "cricket" ] }
+> db.user.find({age:{ $nin:[36,37,38]}});
+{ "_id" : 10, "name" : "Alex", "age" : 35 }
+{ "_id" : 20, "name" : "Bruce", "age" : 35 }
+{ "_id" : 65, "name" : "Ajay", "age" : 48 }
+{ "_id" : 75, "name" : "David", "age" : 28 }
+{ "_id" : 34, "name" : "Charles", "age" : 18 }
+{ "_id" : 90, "name" : "george", "age" : 45, "gender" : "male", "address" : "bangalore", "phone" : 34567 }
+{ "_id" : 85, "name" : "max", "age" : 45, "gender" : "male", "address" : "chennai", "phone" : 98976 }
+{ "_id" : 1, "firstname" : "sachin", "lastname" : "tendulkar", "hobbies" : [ "cricket", "football" ] }
+{ "_id" : 2, "firstname" : "virat", "lastname" : "kholi", "hobbies" : [ "cricket", "hockey" ], "adress" : { "state" : "MH", "city" : "MBI" } }
+{ "_id" : 3, "firstname" : "anil", "lastname" : "kumble", "hobbies" : [ "cricket", "chess" ], "adress" : { "state" : "KA", "city" : "BLR" } }
+{ "_id" : 4, "firstname" : "rohit", "lastname" : "sharma", "hobbies" : [ "cricket", "" ], "adress" : { "state" : "MH", "city" : "MBI" } }
+{ "_id" : 5, "firstname" : "vikram", "dob" : ISODate("1998-11-24T18:30:00Z"), "hobbies" : [ "cricket", "" ] }
+{ "_id" : 6, "firstname" : "raj", "dob" : "Wednesday, November 25, 1998", "hobbies" : [ "cricket" ] }
+> db.user.find({age:{$exists:true,$nin:[35,36]}});
+{ "_id" : 60, "name" : "edward", "age" : 38 }
+{ "_id" : 70, "name" : "edward", "age" : 38 }
+{ "_id" : 80, "name" : "edward", "age" : 38 }
+{ "_id" : 65, "name" : "Ajay", "age" : 48 }
+{ "_id" : 75, "name" : "David", "age" : 28 }
+{ "_id" : 34, "name" : "Charles", "age" : 18 }
+{ "_id" : 90, "name" : "george", "age" : 45, "gender" : "male", "address" : "bangalore", "phone" : 34567 }
+{ "_id" : 85, "name" : "max", "age" : 45, "gender" : "male", "address" : "chennai", "phone" : 98976 }
+
