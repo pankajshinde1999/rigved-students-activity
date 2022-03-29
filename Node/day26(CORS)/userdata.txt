@@ -1,0 +1,22 @@
+> db.createCollection('empdata');
+{ "ok" : 1 }
+
+> db.empdata.insertOne({_id: 1, name : "raj", salary : 3500, address : {"state":"KA", "city":"BLR", "pin":5401}});
+{ "acknowledged" : true, "insertedId" : 1 }
+> db.empdata.find();
+{ "_id" : 1, "name" : "raj", "salary" : 3500, "address" : { "state" : "KA", "city" : "BLR", "pin" : 5401 } }
+> db.empdata.find();
+{ "_id" : 1, "name" : "raj", "salary" : 3500, "address" : { "state" : "KA", "city" : "BLR", "pin" : 5401 } }
+{ "_id" : 2, "name" : "yash", "salary" : 4500, "address" : { "state" : "MH", "city" : "MBI", "pin" : 3201 } }
+{ "_id" : 3, "name" : "vijay", "salary" : 2500, "address" : { "state" : "MH", "city" : "MBI", "pin" : 5201 } }
+{ "_id" : 4, "name" : "rakesh", "salary" : 4500, "address" : { "state" : "MH", "city" : "MBI", "pin" : 8901 } }
+> db.empdata.find();
+{ "_id" : 1, "name" : "raj", "salary" : 3500, "address" : { "state" : "KA", "city" : "BLR", "pin" : 5401 } }
+{ "_id" : 2, "name" : "yash", "salary" : 5500, "address" : { "state" : "MH", "city" : "MBI", "pin" : 3201 } }
+{ "_id" : 3, "name" : "vijay", "salary" : 2500, "address" : { "state" : "MH", "city" : "MBI", "pin" : 5201 } }
+>
+
+
+
+
+
