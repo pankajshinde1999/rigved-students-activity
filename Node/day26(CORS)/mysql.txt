@@ -1,0 +1,102 @@
+Enter password: ****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 13
+Server version: 8.0.28 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2022, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> use rigved_db
+Database changed
+mysql> show tables
+    -> ;
++---------------------+
+| Tables_in_rigved_db |
++---------------------+
+| dept                |
+| employee            |
+| marks               |
+| person              |
+| student             |
+| user                |
+| user_history        |
++---------------------+
+7 rows in set (0.02 sec)
+
+mysql> select from * employee
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'from * employee' at line 1
+mysql> select * from employee;
++----+---------+---------+--------+
+| id | name    | dept_no | salary |
++----+---------+---------+--------+
+|  1 | alex    |      10 |   3500 |
+|  2 | bruce   |      10 |   4500 |
+|  3 | charles |      30 |   2500 |
+|  4 | david   |      30 |   5500 |
+|  5 | edward  |      40 |   2500 |
+|  6 | frank   |      20 |   6500 |
+|  7 | george  |      30 |   7500 |
+|  8 | hari    |      20 |   3500 |
+|  9 | jack    |    NULL |   6500 |
++----+---------+---------+--------+
+9 rows in set (0.01 sec)
+
+mysql> select * from employee;
++----+---------+---------+--------+
+| id | name    | dept_no | salary |
++----+---------+---------+--------+
+|  1 | alex    |      10 |   3500 |
+|  2 | bruce   |      10 |   4500 |
+|  3 | charles |      30 |   2500 |
+|  4 | david   |      30 |   5500 |
+|  5 | edward  |      40 |   2500 |
+|  6 | frank   |      20 |   6500 |
+|  7 | george  |      30 |   7500 |
+|  8 | hari    |      20 |   3500 |
+|  9 | jack    |    NULL |   6500 |
+| 10 | hari    |    NULL |   3500 |
++----+---------+---------+--------+
+10 rows in set (0.00 sec)
+
+mysql> select * from employee;
++----+---------+---------+--------+
+| id | name    | dept_no | salary |
++----+---------+---------+--------+
+|  1 | alex    |      10 |   3500 |
+|  2 | bruce   |      10 |   4500 |
+|  3 | charles |      30 |   2500 |
+|  4 | david   |      30 |   5500 |
+|  5 | edward  |      40 |   2500 |
+|  6 | frank   |      20 |   6500 |
+|  7 | george  |      30 |   7500 |
+|  8 | hari    |      20 |   3500 |
+|  9 | jack    |    NULL |   6500 |
+| 10 | hari    |    NULL |   3500 |
+| 11 | hari    |      20 |   3500 |
++----+---------+---------+--------+
+11 rows in set (0.00 sec)
+
+mysql> select * from employee;
++----+---------+---------+--------+
+| id | name    | dept_no | salary |
++----+---------+---------+--------+
+|  1 | alex    |      10 |   3500 |
+|  2 | bruce   |      10 |   4500 |
+|  3 | charles |      30 |   2500 |
+|  4 | david   |      30 |   5500 |
+|  5 | edward  |      40 |   2500 |
+|  6 | frank   |      20 |   6500 |
+|  7 | george  |      30 |   7500 |
+|  8 | hari    |      20 |   3500 |
+|  9 | jack    |    NULL |   6500 |
+| 11 | hari    |      20 |   3500 |
++----+---------+---------+--------+
+10 rows in set (0.00 sec)
+
+mysql>
