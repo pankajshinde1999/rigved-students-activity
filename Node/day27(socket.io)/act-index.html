@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chat App</title>
+</head>
+<body>
+<div class="header-area">
+  <h1>message app</h1>
+</div>
+<div class="message-area" id="message-area">
+
+</div>
+</div>
+<div class="typing-area">
+  <textarea class="typing-box" id="typing-box"></textarea>
+  <button class="send-button" onclick="sendMessage()">send</button>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.4.1/socket.io.js" integrity="sha512-MgkNs0gNdrnOM7k+0L+wgiRc5aLgl74sJQKbIWegVIMvVGPc1+gc1L2oK9Wf/D9pq58eqIJAxOonYPVE5UwUFA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script type="text/javascript">
+  var socket = io();
+  window.onload = function(){
+    socket = io.connect('http://localhost:3005');
+    socket.on('server-message-broadcasted',function(message){
+      var html = '<div class="message-box other-message-box">'+
+    '<div class="message other-message">'+message+' </div>'+
+    '<div class="separator"></div>'+
+    '</div>';
+    document.getElementById("message-area").innerHTML += html
+    })
+  }
+  function sendMessage(){
+    var message = document.getElementById("typing-box").value
+    var html = '<div class="message-box my-message-box">'+
+    '<div class="message my-message">'+message+' </div>'+
+    '<div class="separator"></div>'+
+    '</div>'
+    document.getElementById("message-area").innerHTML += html;
+    document.getElementById("typing-box").value = '';
+    socket.emit('server-message',message);
+}
+</script>
+</body>
+</html>
