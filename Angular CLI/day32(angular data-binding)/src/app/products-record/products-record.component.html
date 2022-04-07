@@ -10,7 +10,7 @@
         </thead>
         <tbody>
             <ng-container *ngFor="let product of products">
-                <tr >
+                <tr>
                     <td [attr.rowspan]="product.brand.length">{{product.name}}</td>
                     <td>{{product.brand[0]}}</td>
                 </tr>
@@ -20,8 +20,6 @@
                     </tr>
                 </ng-container>
             </ng-container>
-            
-            
         </tbody>
     </table>
 </div>
