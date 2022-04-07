@@ -1,0 +1,22 @@
+<!-- <p>cart-size works!</p> -->
+<h1>product order application</h1>
+<table border="1|1">
+    <tr>
+        <thead>
+            <th>order cart</th>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    <h1>cart items: {{num}}</h1>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <h1>total amount: {{p2}}</h1>
+                </td>
+            </tr>
+        </tbody>
+        <app-product-list (data)="num = $event" (price1)="p2 = $event"></app-product-list>
+    </tr>
+</table>

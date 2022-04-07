@@ -1,0 +1,9 @@
+<p>parent works!</p>
+<div>
+    <h1>parent component has {{username}} and number = {{num}}</h1>
+    <app-child [name]="username" (data)="num = $event"></app-child>
+    <hr>
+    <div *ngFor="let user of usernameArray">
+        <app-child [name]="user"></app-child>
+    </div>
+</div>
