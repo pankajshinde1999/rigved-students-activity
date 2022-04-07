@@ -1,0 +1,17 @@
+
+<p>event-binding works!</p>
+<hr>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <div class="leftside"></div>
+            firstname : <input type="text" #first><br>
+            lastname : <input type="text" #second><br>
+            <button (click)='save(first.value,second.value)'>save</button>
+        </div>
+        <div class="col">
+            <div class="rightside"></div>
+            <p>firstname : {{firstname}}</p>
+            <p>lastname : {{lastname}}</p>
+        </div>
+    </div>
