@@ -1,0 +1,73 @@
+<!-- <p>tdf-validation-activity works!</p> -->
+<div class="container">
+    <h1>user registration form</h1>
+    <form #user="ngForm" (ngSubmit)="formSubmit(user.value)" class="form-control" class="registartion-form">
+        <table class="table">
+            <tr>
+                <td><label for="firstname">first name:</label></td>
+                <td><input type="text" name="firstname" id="firstname" placeholder="First name" ngModel #tf1="ngModel"
+                        autocomplete="off" required minlength="3">
+                    <br>
+                    <span [hidden]="tf1.valid || tf1.pristine" class="text-danger">firstname must be greater or equal to
+                        3 characters</span>
+                </td>
+            </tr>
+            <tr>
+                <td><label for="lastname">last name:</label></td>
+                <td><input type="text" name="lastname" id="lastname" placeholder="Last name" ngModel #tf2="ngModel"
+                        autocomplete="off" required minlength="2">
+                    <br>
+                    <span [hidden]="tf2.valid || tf2.pristine" class="text-danger">lastname must be greater or equal to
+                        2 characters</span>
+                </td>
+            </tr>
+            <tr>
+                <td><label for="gender">gender:</label></td>
+                <td>Male- <input type="radio" name="gender" value="male" ngModel #tg1="ngModel" required>
+                    Female- <input type="radio" name="gender" value="female" ngModel #tg1="ngModel" required>
+                    unknown- <input type="radio" name="gender" value="unknown" ngModel #tg1="ngModel" required>
+                    <br> <span [hidden]="tg1.valid || tc1.pristine" class="text-danger"> please select your
+                        gender</span>
+                </td>
+            </tr>
+            <tr>
+                <td><label for="skills">skills:</label></td>
+                <td>java-<input type="checkbox" name="skills" value="java" ngModel #tc1="ngModel" required>
+                    C-<input type="checkbox" name="skills" value="c" ngModel #tc1="ngModel" required>
+                    python-<input type="checkbox" name="skills" value="c++" ngModel #tc1="ngModel" required>
+                    <br> <span [hidden]="tc1.valid || tc1.pristine" class="text-danger"> please select</span>
+                </td>
+            </tr>
+            <tr>
+                <td><label for="Qualification">qualification :</label></td>
+
+                <select name="Qualification" id="Qualification" ngModel #tq1="ngModel" required>
+
+                    <option value="B.E">B.E</option>
+                    <option value="MBA">MBA</option>
+                    <option value="MTECH">MTECH</option>
+                </select>
+                <br> <span [hidden]="tq1.valid || tq1.pristine" class="text-danger"> please select </span>
+            </tr>
+            <tr>
+                <td><label for="address">address:</label></td>
+                <td><textarea name="address" id="address" ngModel #ta1="ngModel" required></textarea>
+                    <br> <span [hidden]="ta1.valid || ta1.pristine" class="text-danger">please fill the address</span>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2"><input class="btn-grad" type="submit" value="submit" [disabled]="user.invalid">
+                    <input class="btn-grad" type="reset" value="clear" [disabled]="user.invalid">
+                </td>
+            </tr>
+
+        </table>
+    </form>
+    <div [hidden]="user.invalid">
+        <p>first name: {{firstname}}</p>
+        <p>last name: {{lastname}}</p>
+        <p>gender: {{gender}}</p>
+        <p>skill: {{skills}}</p>
+        <p>qualification: {{qualification}}</p>
+        <p>address: {{address}}</p>
+    </div>

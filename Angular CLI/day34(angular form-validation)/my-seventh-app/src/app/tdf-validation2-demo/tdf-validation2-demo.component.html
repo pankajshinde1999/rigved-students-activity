@@ -1,0 +1,29 @@
+<p>tdf-validation2-demo works!</p>
+<div>
+    <h2>TDF validation2</h2>
+    <form #user = "ngForm" (ngSubmit) = 'handleSubmit(user.value)'>
+        <div>
+            firstname
+            <input type="text" name="fn" ngModel #tf1 ="ngModel"
+            autocomplete="off" required minlength="3">
+            <span [hidden]="tf1.valid||tf1.pristine" class="text-danger">
+                firstnamemust be greather than or equal to 3 char
+            </span>
+        </div>
+        <div>
+            lastname
+            <input type="text" name="ln" ngModel #tf2 ="ngModel"
+            autocomplete="off" required minlength="2">
+            <span [hidden]="tf2.valid||tf2.pristine" class="text-danger">
+                firstnamemust be greather than or equal to 2 char
+            </span>
+        </div>
+        <div>
+            <input type="submit" value="submit" [disabled]="user.invalid"
+            class="btn btn-primary">
+        </div>
+    </form>
+    <p>tf1 value :{{tf1.value|json}}</p>
+    <p>tf1 valid:{{tf1.valid}}</p>
+    <p>tf1 pristine:{{tf1.pristine}}</p>
+</div>
