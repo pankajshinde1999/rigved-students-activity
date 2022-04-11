@@ -1,0 +1,14 @@
+<!-- <p>mdf-demo1 works!</p> -->
+<div>
+    <h2>simple MDF demo1 !</h2>
+    <label>
+        firstname :<input [formControl]='firstname'>
+    </label>
+    <div>
+        firstname : {{firstname.value}}
+    </div>
+    <hr>
+    <div>
+        {{firstname|json}}
+    </div>
+</div>
