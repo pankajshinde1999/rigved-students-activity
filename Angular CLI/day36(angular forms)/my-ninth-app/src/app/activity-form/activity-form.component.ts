@@ -16,9 +16,9 @@ export class ActivityFormComponent implements OnInit {
     firstname: ['', Validators.compose([Validators.required, Validators.minLength(2)])],
     lastname: ['', Validators.compose([Validators.required, Validators.minLength(2)])],
     address: this.builder.group({
-      state: ['', Validators.compose([Validators.required, Validators.minLength(2)])],
-      city: ['', Validators.compose([Validators.required, Validators.minLength(2)])],
-      pin: ['', Validators.compose([Validators.required, Validators.minLength(2)])]
+      state: ['', Validators.required],
+      city: ['', Validators.required],
+      pin: ['', Validators.required]
     }),
   });
 
