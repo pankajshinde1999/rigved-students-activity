@@ -1,0 +1,28 @@
+<!-- <p>form-control-demo works!</p> -->
+<div>
+    <form (ngSubmit)="handleSubmit()">
+        <div>
+            username
+            <input type="text" [formControl]="username">
+            <span [hidden]="username.valid||username.pristine" class="text-danger">
+                username is required
+            </span>
+        </div>
+        <div>
+            password
+            <input type="text" [formControl]="password">
+            <span [hidden]="password.valid||password.pristine" class="text-danger">
+                password must be 3-10 char
+            </span>
+        </div>
+        <div>
+            <input type="submit" value="submit" [disabled]="username.invalid||password.invalid">
+        </div>
+    </form>
+    <div>
+        username value = {{username.value}},valid = {{username.valid}},pristine ={{username.pristine}}
+    </div>
+    <div>
+        password value = {{password.value}},valid = {{password.valid}},pristine ={{password.pristine}}
+    </div>
+</div>

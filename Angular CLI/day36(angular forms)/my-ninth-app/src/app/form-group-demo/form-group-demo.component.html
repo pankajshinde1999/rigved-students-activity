@@ -1,0 +1,32 @@
+<!-- <p>form-group-demo works!</p> -->
+<div>
+    <h2>form group demo</h2>
+    <form [formGroup]="profile" (ngSubmit)="handleSubmit()">
+        <div>
+            <label>
+                firstname
+                <input type="text" formControlName="firstname">
+                <span class="text-denger"
+                    [hidden]="profile.controls['firstname'].valid||profile.controls['firstname'].pristine">
+                    firstname is required
+                </span>
+            </label>
+        </div>
+        <div>
+            <label>
+                lastname
+                <input type="text" formControlName="lastname">
+                <span class="text-denger"
+                    [hidden]="profile.controls['lastname'].valid||profile.controls['lastname'].pristine">
+                    lastname is required
+                </span>
+            </label>
+        </div>
+        <div>
+            <input type="submit" value="submit" [disabled]="profile.invalid">
+        </div>
+    </form>
+    <div>
+        profile value :{{profile.value|json}}
+    </div>
+</div>

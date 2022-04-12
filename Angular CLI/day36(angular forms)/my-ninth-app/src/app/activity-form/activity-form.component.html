@@ -1,0 +1,26 @@
+<!-- <p>activity-form works!</p> -->
+<div>
+    <form [formGroup]="profile" (ngSubmit)="handleSubmit()">
+        <p>FirstName: <input type="text" formControlName="firstname">
+            <span [hidden]="profile.controls['firstname'].valid || profile.controls['firstname'].pristine"
+                class="text-danger">
+                *please enter character more than 2*</span>
+        </p>
+        <p>LastName: <input type="text" formControlName="lastname">
+            <span [hidden]="profile.controls['lastname'].valid || profile.controls['lastname'].pristine"
+                class="text-danger">
+                *please enter character more than 2*</span>
+        </p>
+        <div formGroupName="address">
+            <p>Address</p>
+            <p>State: <input type="text" formControlName="state"></p>
+            <p>City: <input type="text" formControlName="city"></p>
+            <p>PinCode: <input type="number" formControlName="pin"></p>
+        </div>
+        <p><button type="submit" value="submit" [disabled]="profile.invalid">Submit</button></p>
+    </form>
+</div>
+
+<div>
+    Profile Value: {{profile.value | json}}
+</div>
