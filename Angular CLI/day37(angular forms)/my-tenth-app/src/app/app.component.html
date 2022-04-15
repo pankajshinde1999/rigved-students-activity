@@ -1,15 +1,18 @@
 <div class="container-fluid">
-  <div>
-    <h2 class="alert alert-primary text-center">Welcome to Router</h2>
+  <div class="row">
+    <div class="col-6 border-4">
+      <app-user-store></app-user-store>
+    </div>
+    <div class="col-5 border-4">
+      <app-user-list></app-user-list>
+    </div>
   </div>
-  <div class="container">
-    <a routerLink="store">Registration</a>
-    /
-    <a routerLink="delete">Delete User</a>
-    /
-    <a routerLink="usersList">List Users</a>
-  </div>
-  <div class="container">
-    <router-outlet></router-outlet>
+  <div class="row">
+    <div class="col-6 border-4">
+      <app-user-delete></app-user-delete>
+    </div>
+    <div class="col-5 border-4">
+      <app-user-update></app-user-update>
+    </div>
   </div>
 </div>

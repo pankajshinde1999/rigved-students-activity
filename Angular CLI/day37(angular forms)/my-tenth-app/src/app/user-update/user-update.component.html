@@ -1,7 +1,11 @@
 <div>
-    <h3 class="text-center">User Store Form</h3>
-
-    <form [formGroup]="profileForm" (ngSubmit)="saveForm()">
+    <h3 class="text-center">user update</h3>
+    Enter Id:<input type="number" [formControl]="id">&nbsp;
+    <input type="button" (click)="getInfo()" (click)="setProfileValue()" value="Get" class="btn btn-primary">
+</div>
+<br>
+<div>
+    <form *ngIf="object" [formGroup]="profileForm" (ngSubmit)="updateForm()">
         <table>
             <tr>
                 <th>Name:</th>
@@ -68,15 +72,14 @@
                     <td><input type="text" formControlName="pin" class="form-control">
                         <span class="text-danger"
                             [hidden]="profileForm.controls['address'].get('pin')?.valid || profileForm.controls['address'].get('pin')?.pristine">
-                            *Pincode must of 6 digits*
+                            *Pincode must be 6 digits*
                         </span>
                     </td>
                 </tr>
             </div>
             <div>
-                <input type="submit" value="Save" [disabled]="profileForm.invalid" class="btn btn-dark">
+                <input type="submit" value="Update" [disabled]="profileForm.invalid" class="btn btn-primary">
             </div>
         </table>
     </form>
-
 </div>

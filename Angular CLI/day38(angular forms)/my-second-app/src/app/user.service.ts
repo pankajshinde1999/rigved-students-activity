@@ -18,8 +18,7 @@ export class UserService {
       profileId: a,
       name: obj.name,
       gender: obj.gender,
-      phoneNo: obj.phoneNo,
-      emailId: obj.emailId,
+      phoneNo: obj.phoneNo, emailId: obj.emailId,
       address: { state: obj.address.state, city: obj.address.city, pin: obj.address.pin }
     }
     this.userArray.push(object);
@@ -54,8 +53,9 @@ export class UserService {
         user.address.state = obj.address.state;
         user.address.city = obj.address.city;
         user.address.pin = obj.address.pin;
-        console.log('hey')
+        console.log('hello')
       }
     }
   }
 }
+

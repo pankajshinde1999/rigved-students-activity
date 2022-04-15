@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { Router } from '@angular/router';
 import { UserService } from '../user.service';
 
 @Component({
@@ -9,14 +10,14 @@ import { UserService } from '../user.service';
 })
 export class UserDeleteComponent implements OnInit {
 
-  constructor(private service: UserService) { }
+  constructor( private service: UserService, private _router: Router) { }
 
   ngOnInit(): void {
   }
 
-  id: FormControl = new FormControl('');
-
-  deleteUser() {
-    this.service.delete(this.id.value)
+  id: FormControl=new FormControl('');
+  deleteUser(){
+    this.service.delete(this.id.value);
+    this._router.navigate(["usersList"]);
   }
 }

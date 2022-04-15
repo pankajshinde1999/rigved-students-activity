@@ -6,15 +6,12 @@ import { UserService } from '../user.service';
   templateUrl: './user-list.component.html',
   styleUrls: ['./user-list.component.css']
 })
-
-export class UserlistComponent implements OnInit {
-
-  items: undefined | any[] = undefined
-
+export class UserListComponent implements OnInit {
+  items: undefined | any[]=undefined
   constructor(public service: UserService) { }
 
   ngOnInit(): void {
-    this.items = this.service.getUser()
+    this.items=this.service.getUser()
   }
 
 }
