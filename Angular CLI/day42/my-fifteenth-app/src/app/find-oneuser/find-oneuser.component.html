@@ -1,0 +1,100 @@
+<div>
+<h3 class="alert alert-primary">Search Player</h3>
+    <label for="id" class='input-group-text' style="width: fit-content;">
+        Id: <input type="number" [formControl]="_id" class="form-control" style="width: fit-content;">
+    </label>
+    <input type="submit" value="Get" (click)="handleGet(_id.value)" class="btn btn-success">
+    <div>
+        <table class="table table-stripped text-center">
+            <thead>
+                <tr align="center">
+                    <th rowspan="2" >UserId</th><th rowspan="2">FirstName</th><th rowspan="2">Lastname</th>
+                    <th rowspan="2">Age</th><th>hobby</th>
+                    <th colspan="2">Address</th>
+                </tr>
+                <tr>
+                    <th>sport</th><th>State</th><th>City</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngIf="users" style="text-align:center;"> 
+                    <td>{{users._id}}</td>
+                    <td>{{users.firstname}}</td>
+                    <td>{{users.lastname}}</td>
+                    <td>{{users.age}}</td>
+                    <td>{{users.hobby.sport}}</td>
+                    <td>{{users.address.state}}</td>
+                    <td>{{users.address.city}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<div>
+    <div class="panel panel-primary" *ngIf="users">
+        <div class="panel-heading">
+          <h3 class="panel-title">{{users._id}}</h3>
+        </div>
+        <div class="panel-body">
+          <div class="col-xs-10">
+            <div class="row vertical-align">
+              <div class="col-xs-4">
+                <img class="imageClass" src="https://2.bp.blogspot.com/-L8hccI1RetU/WjFXFp717LI/AAAAAAAAns8/zmoWhYWycR0SNT_u7Fxl5e73hEYsTMVIgCLcBGAs/s400/john.png" style="width: 200px;"/>
+              </div>
+              <div class="col-xs-8">
+      
+                <div class="row">
+                  <div class="col-xs-6">
+                    firstname
+                  </div>
+                  <div class="col-xs-6">
+                    : {{users.firstname}}
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-xs-6">
+                    lastname
+                  </div>
+                  <div class="col-xs-6">
+                    : {{users.lastname}}
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-xs-6">
+                    age
+                  </div>
+                  <div class="col-xs-6">
+                    : {{users.age}}
+                  </div>
+                </div>
+                <div class="row">
+                <div class="col-xs-6">
+                    hobby
+                  </div>
+                  <div class="col-xs-6">
+                    : {{users.hobby.sport}}
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-xs-6">
+                    state
+                  </div>
+                  <div class="col-xs-6">
+                    : {{users.address.state}}
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-xs-6">
+                    City
+                  </div>
+                  <div class="col-xs-6">
+                    : {{users.address.city}}
+                  </div>
+                </div>
+      
+              </div>
+      
+            </div>
+          </div>
+        </div>
+      </div>
